@@ -1,11 +1,16 @@
 package ObejectRepository;
 
+import java.util.List;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class WSRBodyRecordPage{
+import Resources.base;
+
+public class WSRBodyRecordPage extends base{
 
 	WebDriver driver;
 
@@ -15,6 +20,19 @@ public class WSRBodyRecordPage{
 		PageFactory.initElements(driver, this);
 	}
 
+
+	public static String xpathErrorInDays = "//span[text()='$dia']/parent::*/following-sibling::div/div/div/following-sibling::div[2]";
+	public static String xpathTextareaDays = "//span[text()='$dia']/parent::*/following-sibling::div/div/div/following-sibling::div/div/p";
+	public static String inputDayHours = "//input[@name='$dia_Hours__c']";
+	public static String lastCreatedrecord ="//a[contains(@href,'$id')]";
+	public static String InputHours= "//input[@name='$dia_Hours__c']";
+	public static String InputTextArea= "//span[text()='$dia']/parent::*/following-sibling::div/div/div[3]/div";
+	public static String InputPClick ="//span[text()='$dia']/parent::*/following-sibling::div/div/div/following-sibling::div/div/p";
+	
+	public static By xpathSubmitToManager = By.xpath("//button[text()='Submit to Manager']");
+	public static By xpathButtonSaveAndSend = By.xpath("//button[@class='slds-button slds-button_brand cuf-publisherShareButton undefined uiButton']");
+	
+	
 	@FindBy(xpath = "//a[@title='New']")
 	WebElement newWSR;
 	
@@ -63,58 +81,6 @@ public class WSRBodyRecordPage{
 	WebElement storiesNotStarted;
 	
 	
-	@FindBy(xpath = "//div[@role='toolbar']/following-sibling::div/div")
-	WebElement mondayTextarea;
-	
-	@FindBy(xpath = "//div[@role='toolbar']/following-sibling::div/div/p")
-	WebElement monday;
-	
-	
-	@FindBy(xpath = "//span[text()='Tuesday']/parent::*/following-sibling::div/div/div[3]/div")
-	WebElement tuesdayTextarea;
-	
-	@FindBy(xpath = "//span[text()='Tuesday']/parent::*/following-sibling::div/div/div/following-sibling::div/div/p")
-	WebElement tuesday;
-	
-	
-	@FindBy(xpath = "//span[text()='Wednesday']/parent::*/following-sibling::div/div/div[3]/div")
-	WebElement 	wednesdayTextarea;
-	
-	@FindBy(xpath = "//span[text()='Wednesday']/parent::*/following-sibling::div/div/div/following-sibling::div/div/p")
-	WebElement 	wednesday;
-	
-	
-	@FindBy(xpath = "//span[text()='Thursday']/parent::*/following-sibling::div/div/div[3]/div")
-	WebElement 	thursdayTextarea;
-	
-	@FindBy(xpath = "//span[text()='Thursday']/parent::*/following-sibling::div/div/div/following-sibling::div/div/p")
-	WebElement 	thursday;
-	
-
-	@FindBy(xpath = "//span[text()='Friday']/parent::*/following-sibling::div/div/div[3]/div")
-	WebElement 	fridayTextarea;
-	
-	@FindBy(xpath = "//span[text()='Friday']/parent::*/following-sibling::div/div/div/following-sibling::div/div/p")
-	WebElement 	friday;
-	
-	
-	@FindBy(xpath = "//input[@name='Monday_Hours__c']")
-	WebElement mondayHours;
-	
-	@FindBy(xpath = "//input[@name='Tuesday_Hours__c']")
-	WebElement tuesdayHours;
-	
-	@FindBy(xpath = "//input[@name='Wednesday_Hours__c']")
-	WebElement wednesdayHours;
-	
-	@FindBy(xpath = "//input[@name='Thursday_Hours__c']")
-	WebElement thursdayHours;
-	
-	@FindBy(xpath = "//input[@name='Friday_Hours__c']")
-	WebElement fridayHours;
-	
-	
-	
 	@FindBy (xpath ="//ul[@class='errorsList slds-list_dotted slds-m-left_medium']/li")
 	WebElement errorPresent;
 	
@@ -124,6 +90,96 @@ public class WSRBodyRecordPage{
 	@FindBy (xpath="//button[@name='SaveEdit']")
 	WebElement saveButton;
 	
+	@FindBy (xpath="//button[text()='Submit to Manager']")
+	WebElement buttonSubmitToManager;
+	
+	@FindBy (xpath="//button[@class='slds-button slds-button_brand cuf-publisherShareButton undefined uiButton']")
+	WebElement buttonSaveAndSend;
+	
+	
+	@FindBy (xpath="//span[@class='toastMessage slds-text-heading--small forceActionsText']")
+	WebElement messageMailSucces;
+	
+	
+	
+
+	
+	public List<WebElement> ErrorInDays(String dia) {
+		
+		List<WebElement>  ListwebElement = driver.findElements(By.xpath(xpathErrorInDays.replace("$dia", dia)));
+
+		return ListwebElement;
+	 
+	}
+	public WebElement findTextareaDays(String dia) {
+		
+		WebElement webElement = driver.findElement(By.xpath(xpathTextareaDays.replace("$dia", dia)));
+
+		return webElement;
+	 
+	}
+	
+	
+	public WebElement inputDayHours(String dia) {
+		
+		WebElement webElement = driver.findElement(By.xpath(inputDayHours.replace("$dia", dia)));
+
+		return webElement;
+	 
+	}
+	
+	public WebElement lastCreatedRecord(String id) {
+		
+		WebElement webElement = driver.findElement(By.xpath(lastCreatedrecord.replace("$id", id)));
+
+		return webElement;
+	 
+	}
+	
+	public WebElement inputHours(String dia) {
+		
+		WebElement webElement = driver.findElement(By.xpath(InputHours.replace("$dia", dia)));
+
+		return webElement;
+	 
+	}
+	
+	public WebElement inputTextArea(String dia) {
+		
+		WebElement webElement = driver.findElement(By.xpath(InputTextArea.replace("$dia", dia)));
+
+		return webElement;
+	 
+	}
+	
+
+	
+	
+	public WebElement inputClickDay(String dia) {
+		
+		WebElement webElement = driver.findElement(By.xpath(InputPClick.replace("$dia", dia)));
+
+		return webElement;
+	 
+	}
+	
+	
+	public WebElement messageMailSucces() {
+		
+		return messageMailSucces;
+	}
+	
+	public WebElement buttonSaveAndSend() {
+		
+		return buttonSaveAndSend;
+	}
+	
+	public WebElement buttonSubmitToManager() {
+
+		return buttonSubmitToManager;
+	}
+	
+
 	
 	public WebElement saveButton() {
 
@@ -139,99 +195,6 @@ public class WSRBodyRecordPage{
 	public WebElement errorPresent() {
 
 		return errorPresent;
-	}
-	
-	public WebElement inputFirdayHours() {
-
-		return fridayHours;
-	}
-
-	public WebElement inputThursdayHours() {
-
-		return thursdayHours;
-	}
-	
-	public WebElement inputWednesdayHours() {
-
-		return wednesdayHours;
-	}
-	
-	public WebElement inputMondayHours() {
-
-		return mondayHours;
-	}
-	
-	public WebElement inputTuesdayHours() {
-
-		return tuesdayHours;
-	}
-	
-	
-	
-
-	public WebElement inputThursdayClick() {
-
-		return thursday;
-	}
-	
-	
-	public WebElement inputThursdayText() {
-
-		return thursdayTextarea;
-	}
-	
-	
-
-	public WebElement inputClickFriday() {
-
-		return friday;
-	}
-	
-	
-	public WebElement inputFridayText() {
-
-		return fridayTextarea;
-	}
-	
-	
-	
-	
-	
-	
-	public WebElement inputClickWednesday() {
-
-		return wednesday;
-	}
-	
-	
-	public WebElement inputWednesdayText() {
-
-		return wednesdayTextarea;
-	}
-	
-	
-	public WebElement inputClickTuesday() {
-
-		return tuesday;
-	}
-	
-	
-	public WebElement inputTuesdayText() {
-
-		return tuesdayTextarea;
-	}
-	
-	
-	
-	public WebElement inputClickMonday() {
-
-		return monday;
-	}
-	
-	
-	public WebElement inputMondayText() {
-
-		return mondayTextarea;
 	}
 	
 	

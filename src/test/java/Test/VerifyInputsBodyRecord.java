@@ -3,22 +3,21 @@ package Test;
 import org.testng.annotations.Test;
 import java.io.IOException;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.Assert;
-import org.openqa.selenium.By;
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
-import ObejectRepository.HeaderPage;
+
 import ObejectRepository.HomePage;
 import ObejectRepository.LoginPage;
 import ObejectRepository.WSRBodyRecordPage;
 import ObejectRepository.WSRPage;
+import Resources.Utilities;
 import Resources.base;
 
 public class VerifyInputsBodyRecord extends base {
@@ -45,7 +44,7 @@ public class VerifyInputsBodyRecord extends base {
 	//Go to WSR Application
 		home.ButtonWaffle().click();
 		home.SearchHomepage().sendKeys("Wsr");
-		jsClick(home.Wsr());
+		Utilities.jsClick(home.Wsr());
 	
 }
 	
@@ -55,12 +54,12 @@ public class VerifyInputsBodyRecord extends base {
 	
 	//Open Header Tab
 		WSRPage wsr= new WSRPage(driver);
-		jsClick(wsr.WsrBodyTab());
+		Utilities.jsClick(wsr.WsrBodyTab());
 	
 		
-	//Create new header
+	//Create new Body record
 		WSRBodyRecordPage body= new WSRBodyRecordPage(driver);
-		jsClick(body.newWSRBody());
+		Utilities.jsClick(body.newWSRBody());
 		
 	//Check text present match	
 		

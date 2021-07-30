@@ -2,29 +2,25 @@ package Ejercicio2.WSR;
 
 import org.testng.annotations.Test;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.FileOutputStream;
+
+import java.io.IOException;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.junit.Assert;
-import org.openqa.selenium.By;
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
-import ObejectRepository.HeaderPage;
+
 import ObejectRepository.HomePage;
 import ObejectRepository.LoginPage;
-import ObejectRepository.WSRPage;
+
+import Resources.Utilities;
 import Resources.base;
 
 public class Test2 extends base {
@@ -51,7 +47,7 @@ public class Test2 extends base {
 	//Go to WSR Application
 		home.ButtonWaffle().click();
 		home.SearchHomepage().sendKeys("Wsr");
-		jsClick(home.Wsr());
+		Utilities.jsClick(home.Wsr());
 	
 }
 	

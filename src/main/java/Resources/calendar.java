@@ -8,7 +8,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 
-import ObejectRepository.AccountPage;
 
 
 public class calendar extends base {
@@ -22,7 +21,7 @@ public class calendar extends base {
 		JavascriptExecutor executor = (JavascriptExecutor)driver;
 
         executor.executeScript("arguments[0].scrollIntoView();", webElement);
-        jsClick(webElement);
+        Utilities.jsClick(webElement);
        
         WebElement yearValue= driver.findElement(By.xpath("//select[@class='slds-select']"));
         WebElement yearOption = driver.findElement(By.xpath("//select[@class='slds-select']/option[@value='"+year+"']"));
@@ -49,8 +48,8 @@ public class calendar extends base {
 		if (yearOption.getText() != year) {
 	        	
 	            yearValue.click();   
-	            System.out.println(year);
-	            GetInView(yearOption);
+	          //  System.out.println(year);
+	            Utilities.GetInView(yearOption);
 	            yearOption.click();
 	        }
 				

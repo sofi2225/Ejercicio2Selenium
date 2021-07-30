@@ -2,7 +2,6 @@ package ObejectRepository;
 
 import java.util.List;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -53,6 +52,14 @@ public class HeaderPage {
 	@FindBys(@FindBy (xpath = "//*[@data-input-element-id='input-field']"))
 	List<WebElement> labelsInHeaderForm;
 	
+	@FindBy (xpath="//ul[@class='errorsList slds-list_dotted slds-m-left_medium']/li")
+	WebElement errorheader;
+	
+	
+	public WebElement errorHeader() {
+
+		return errorheader;
+	}
 	
 
 	public List<WebElement> LabelsInHeaderForm() {

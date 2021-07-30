@@ -5,9 +5,10 @@
     <classes>
       <class name="Test.CreateWSRBodyRecord">
         <methods>
-          <include name="VerifyWSRBodyFields"/>
+          <include name="VerifyWSRBodyFields" invocation-numbers="0"/>
           <include name="initialize"/>
           <include name="Quit"/>
+          <include name="sendToManager" invocation-numbers="0"/>
         </methods>
       </class> <!-- Test.CreateWSRBodyRecord -->
     </classes>

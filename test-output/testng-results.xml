@@ -1,28 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
+<testng-results ignored="0" total="2" passed="0" failed="2" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2021-07-23T15:40:51 UYT" name="Default suite" finished-at="2021-07-23T15:42:16 UYT" duration-ms="85059">
+  <suite started-at="2021-07-29T14:21:59 UYT" name="Default suite" finished-at="2021-07-29T14:23:29 UYT" duration-ms="90392">
     <groups>
     </groups>
-    <test started-at="2021-07-23T15:40:51 UYT" name="Default test" finished-at="2021-07-23T15:42:16 UYT" duration-ms="85059">
+    <test started-at="2021-07-29T14:21:59 UYT" name="Default test" finished-at="2021-07-29T14:23:29 UYT" duration-ms="90392">
       <class name="Test.CreateWSRBodyRecord">
-        <test-method is-config="true" signature="initialize()[pri:0, instance:Test.CreateWSRBodyRecord@7a69b07]" started-at="2021-07-23T15:40:51 UYT" name="initialize" finished-at="2021-07-23T15:41:15 UYT" duration-ms="24774" status="PASS">
+        <test-method is-config="true" signature="initialize()[pri:0, instance:Test.CreateWSRBodyRecord@353d0772]" started-at="2021-07-29T14:21:59 UYT" name="initialize" finished-at="2021-07-29T14:22:20 UYT" duration-ms="21554" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initialize -->
-        <test-method signature="VerifyWSRBodyFields()[pri:0, instance:Test.CreateWSRBodyRecord@7a69b07]" started-at="2021-07-23T15:41:15 UYT" name="VerifyWSRBodyFields" finished-at="2021-07-23T15:42:16 UYT" duration-ms="60187" status="FAIL">
-          <exception class="java.lang.AssertionError">
+        <test-method signature="VerifyWSRBodyFields(org.testng.ITestContext)[pri:0, instance:Test.CreateWSRBodyRecord@353d0772]" started-at="2021-07-29T14:22:20 UYT" name="VerifyWSRBodyFields" finished-at="2021-07-29T14:23:29 UYT" duration-ms="68392" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@18245eb0]]>
+              </value>
+            </param>
+          </params>
+          <exception class="org.openqa.selenium.NoSuchElementException">
             <message>
-              <![CDATA[The following asserts failed:
-expected [https://tdccom-dev-ed.lightning.force.com/lightning/r/Body_WSR__c/a005e000004bE2cAAE/view] but found [https://tdccom-dev-ed.lightning.force.com/lightning/o/Body_WSR__c/new?count=1&nooverride=1&useRecordTypeCheck=1&navigationLocation=LIST_VIEW&uid=162706568121659326&backgroundContext=%2Flightning%2Fo%2FBody_WSR__c%2Flist%3FfilterName%3DRecent]]]>
+              <![CDATA[no such element: Unable to locate element: {"method":"xpath","selector":"//ul[@class='errorsList slds-list_dotted slds-m-left_medium']/li"}
+  (Session info: chrome=90.0.4430.212)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: '192.168.1.2', ip: '2800:a4:1780:f800:6d04:83f0:33b6:924d%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '11.4', java.version: '16.0.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 90.0.4430.212, chrome: {chromedriverVersion: 90.0.4430.24 (4c6d850f087da..., userDataDir: /var/folders/6d/qsclvbs10bb...}, goog:chromeOptions: {debuggerAddress: localhost:52688}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: MAC, platformName: MAC, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: ba7002ece26e9a449bf74d4ebb072497
+*** Element info: {Using=xpath, value=//ul[@class='errorsList slds-list_dotted slds-m-left_medium']/li}]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: The following asserts failed:
-expected [https://tdccom-dev-ed.lightning.force.com/lightning/r/Body_WSR__c/a005e000004bE2cAAE/view] but found [https://tdccom-dev-ed.lightning.force.com/lightning/o/Body_WSR__c/new?count=1&nooverride=1&useRecordTypeCheck=1&navigationLocation=LIST_VIEW&uid=162706568121659326&backgroundContext=%2Flightning%2Fo%2FBody_WSR__c%2Flist%3FfilterName%3DRecent]
-at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:47)
-at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:31)
-at Test.CreateWSRBodyRecord.VerifyWSRBodyFields(CreateWSRBodyRecord.java:320)
+              <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//ul[@class='errorsList slds-list_dotted slds-m-left_medium']/li"}
+  (Session info: chrome=90.0.4430.212)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: '192.168.1.2', ip: '2800:a4:1780:f800:6d04:83f0:33b6:924d%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '11.4', java.version: '16.0.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 90.0.4430.212, chrome: {chromedriverVersion: 90.0.4430.24 (4c6d850f087da..., userDataDir: /var/folders/6d/qsclvbs10bb...}, goog:chromeOptions: {debuggerAddress: localhost:52688}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: MAC, platformName: MAC, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: ba7002ece26e9a449bf74d4ebb072497
+*** Element info: {Using=xpath, value=//ul[@class='errorsList slds-list_dotted slds-m-left_medium']/li}
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:78)
+at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
+at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+at jdk.proxy2/jdk.proxy2.$Proxy12.getText(Unknown Source)
+at Test.CreateWSRBodyRecord.VerifyWSRBodyFields(CreateWSRBodyRecord.java:227)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:78)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -53,11 +90,62 @@ at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
+          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- VerifyWSRBodyFields -->
-        <test-method is-config="true" signature="Quit()[pri:0, instance:Test.CreateWSRBodyRecord@7a69b07]" started-at="2021-07-23T15:42:16 UYT" name="Quit" finished-at="2021-07-23T15:42:16 UYT" duration-ms="4" status="PASS">
+        <test-method signature="sendToManager(org.testng.ITestContext)[pri:0, instance:Test.CreateWSRBodyRecord@353d0772]" started-at="2021-07-29T14:23:29 UYT" name="sendToManager" finished-at="2021-07-29T14:23:29 UYT" duration-ms="208" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@18245eb0]]>
+              </value>
+            </param>
+          </params>
+          <exception class="java.lang.NullPointerException">
+            <message>
+              <![CDATA[Cannot invoke "java.lang.CharSequence.toString()" because "replacement" is null]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.NullPointerException: Cannot invoke "java.lang.CharSequence.toString()" because "replacement" is null
+at java.base/java.lang.String.replace(String.java:2159)
+at ObejectRepository.WSRBodyRecordPage.lastCreatedRecord(WSRBodyRecordPage.java:132)
+at Test.CreateWSRBodyRecord.sendToManager(CreateWSRBodyRecord.java:340)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:78)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:794)
+at org.testng.TestRunner.run(TestRunner.java:596)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+at org.testng.TestNG.runSuites(TestNG.java:1063)
+at org.testng.TestNG.run(TestNG.java:1031)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.NullPointerException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- sendToManager -->
+        <test-method is-config="true" signature="Quit()[pri:0, instance:Test.CreateWSRBodyRecord@353d0772]" started-at="2021-07-29T14:23:29 UYT" name="Quit" finished-at="2021-07-29T14:23:29 UYT" duration-ms="164" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Quit -->

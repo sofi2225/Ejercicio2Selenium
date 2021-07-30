@@ -3,32 +3,23 @@ package Test;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-
-
-
-import Excel.ExcelData;
-
 import java.io.IOException;
 
-
-import java.util.List;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.DataProvider;
 
 import ObejectRepository.HomePage;
 import ObejectRepository.LoginPage;
 import ObejectRepository.WSRBodyRecordPage;
 import ObejectRepository.WSRPage;
+import Resources.Utilities;
 import Resources.base;
 import Resources.calendar;
 
@@ -61,7 +52,7 @@ public class CreateWSRBodyRecord extends base {
 	//Go to WSR Application
 		home.ButtonWaffle().click();
 		home.SearchHomepage().sendKeys("Wsr");
-		jsClick(home.Wsr());
+		Utilities.jsClick(home.Wsr());
 	
 }
 	
@@ -69,17 +60,22 @@ public class CreateWSRBodyRecord extends base {
 @Test
 	public void VerifyWSRBodyFields(ITestContext context) throws InterruptedException, IOException {
 	
-	//Open Header Tab
+	//Open Wsr  Tab
 		WSRPage wsr= new WSRPage(driver);
-		jsClick(wsr.WsrBodyTab());
+		Utilities.jsClick(wsr.WsrBodyTab());
 	
 		
 	//Create new header
 		WSRBodyRecordPage body= new WSRBodyRecordPage(driver);
-		jsClick(body.newWSRBody());
+		Utilities.jsClick(body.newWSRBody());
 		
 	/// FILL WSR BODY RECORD ///
 		
+		WSRBodyRecordPage wsrBody = new WSRBodyRecordPage(driver);
+		WebDriverWait wait=new WebDriverWait(driver, 20);
+
+		
+		//variables//
 		
 		String highlights= "Highlights";
 		String lowlights="Lowlights";
@@ -101,32 +97,25 @@ public class CreateWSRBodyRecord extends base {
 		String storiesInProgress="0";
 		String storiesNotStarted="0";
 		
-		WSRBodyRecordPage wsrBody = new WSRBodyRecordPage(driver);
-	
-		wsrBody.inputUser().click();
-		Thread.sleep(2000);
-		wsrBody.inputUser().sendKeys(Keys.ENTER); //Picks user
+	//Fill data//
 		
+		UseCombobox(wsrBody.inputUser(), wait); //Picks User
+	
 		wsrBody.inputHighlights().clear();
 		wsrBody.inputHighlights().sendKeys(highlights); // Enters Highlight
 		
 		
-		wsrBody.inputHeader().click();
-		Thread.sleep(2000);
-		wsrBody.inputHeader().sendKeys(Keys.ENTER); // Picks Header
-		
-		
+		UseCombobox(wsrBody.inputHeader(), wait); //Picks Header
+
 		wsrBody.inputLowlights().clear();
 		wsrBody.inputLowlights().sendKeys(lowlights); // Enters Lowlights
 		
 		
 		wsrBody.inputBodyName().sendKeys(bodyName);// Enters Body Name
 		
+		
 		selectDropdownText(wsrBody.inputSatus(),status); // Picks Status
-		
-		
-	//	selectDropdownText(wsrBody.inputSatus(), "Draft");
-		
+			
 		
 		wsrBody.inputUpcomingLeaves().clear();
 		wsrBody.inputUpcomingLeaves().sendKeys(upcomingLeaves);// Enters Upcoming Leaves
@@ -136,6 +125,7 @@ public class CreateWSRBodyRecord extends base {
 		///CALENDAR ///
 		
 		calendar c= new calendar();
+		
 		c.Calendario(startDateDay, startDateMonth,startDateYear ,wsrBody.inputSprintStart(), driver); //Start Date
 		
 		c.Calendario(endDateDay, endDateMonth,endDateYear ,wsrBody.inputSprintEnd(), driver); //End Date
@@ -147,114 +137,97 @@ public class CreateWSRBodyRecord extends base {
 		wsrBody.inputStoriesInProgress().sendKeys(storiesInProgress);
 		wsrBody.inputStoriesNotStarted().sendKeys(storiesNotStarted);
 		
-		Thread.sleep(4000);
+		//Thread.sleep(4000);
 		
 		/// FILL DAY DATA ///
-
-		fillDayData(wsrBody.inputMondayText(),wsrBody.inputClickMonday() ,"Monday"); 
-		fillDayHours(wsrBody.inputMondayHours(), "0");
-		
-		//Tuesday
-		fillDayData(wsrBody.inputTuesdayText(),wsrBody.inputClickTuesday() ,"Tuesday"); 
-		fillDayHours(wsrBody.inputTuesdayHours() , "0"); 
-
+		String[] dias = {"Monday","Tuesday","Wednesday" ,"Thursday","Friday"};
 		
 		
-		fillDayData(wsrBody.inputWednesdayText(),wsrBody.inputClickWednesday() ,"Wednesday" ); 
-		fillDayHours(wsrBody.inputWednesdayHours() , "0"); 
-
+		for (String dia :dias){
+			
+		Utilities.GetInView(wsrBody.inputTextArea(dia));
+		Utilities.jsClick(wsrBody.inputTextArea(dia));
+		//Thread.sleep(2000);
+		wsrBody.inputClickDay(dia).sendKeys(dia);
 		
-		fillDayData(wsrBody.inputThursdayText(),wsrBody.inputThursdayClick() ,"Thursday"); 
-		fillDayHours(wsrBody.inputThursdayHours() , "0"); 
-
+		wsrBody.inputHours(dia).sendKeys("0");
 		
-		fillDayData(wsrBody.inputFridayText(),wsrBody.inputClickFriday() ,"Friday"); 
-		fillDayHours(wsrBody.inputFirdayHours() , "0"); 
-
+		}
 		
 		// ASSERT 1 // Check if sending value of work empty Form is not submitted and error text match
 		
-		String[] dias = {"Monday","Tuesday","Wednesday" ,"Thursday","Friday"};
+		
 		String bodyRecordUrl = driver.getCurrentUrl();
-		WebElement buttonSave = body.saveButton();
 		
 		for (String dia: dias) {
 			
-		//WebElement b = findTextArea(dia);
-		GetInView(findTextArea(dia));
-		findTextArea(dia).clear();
-		buttonSave.click();
-		
+			Utilities.GetInView(wsrBody.findTextareaDays(dia));
+			wsrBody.findTextareaDays(dia).clear();
+			body.saveButton().click();
 	
-		Thread.sleep(1000);
 		
-		try {   findErrorPresentDay(dia);
-		
-		}
-		catch(Exception e){
+				try {   
+						wait.until(ExpectedConditions.visibilityOf(wsrBody.ErrorInDays(dia).get(0)));
+						wsrBody.ErrorInDays(dia);
+						Assert.assertEquals(bodyRecordUrl, driver.getCurrentUrl() );
+						Assert.assertTrue(wsrBody.ErrorInDays(dia).size() != 0);
+					}
+				catch(Exception e){
 			
-			System.out.println("No se ecuentra el error");
-		}
+					System.out.println("No se ecuentra el error");
+					}
 		
-		
-		findTextArea(dia).sendKeys("test");
-		
-		Assert.assertEquals(bodyRecordUrl, driver.getCurrentUrl() );
-		//Assert.assertTrue( findErrorPresentDay(dia).size() != 0);
+			wsrBody.findTextareaDays(dia).sendKeys("test");
 		
 		}
 		
 		
-		// ASSERT 2 // Check that form cant be submitted with Extra Hours Or Empty field
+		// ASSERT 2 // Check that form can't be submitted with Extra Hours Or Empty field
 		
 		String errorExtraHours = "No extra hours allowed.";
 		WebElement error = null;
 		
-		for (String dia: dias) {
+			for (String dia: dias) {
 						
-			inputDayHours(dia).clear();
-			inputDayHours(dia).sendKeys("9");
-			buttonSave.click();
-			Thread.sleep(1000);
+				wsrBody.inputDayHours(dia).clear();
+				wsrBody.inputDayHours(dia).sendKeys("9");
+				body.saveButton().click();
 
+				try { 
+					wait.until(ExpectedConditions.textToBePresentInElement(body.errorPresent(), errorExtraHours));
+					error = body.errorPresent();
 			
-			try {  error = body.errorPresent();
-			
-			}
-			catch(Exception e){
+					}
+				catch(Exception e){
 				
-				System.out.println("No se ecuentra el error");
-			}
-			
+					System.out.println("No se ecuentra el error");
+				}
 			
 			Assert.assertEquals(error.getText(), errorExtraHours);	
 
-		}
+			}
 		
 		for (String dia: dias) {
 			
-			//WebElement a = driver.findElement(By.xpath("//input[@name='"+dia+"_Hours__c']"));
+			wsrBody.inputDayHours(dia).clear();
+			body.saveButton().click();
+
 			
-		
-			inputDayHours(dia).clear();
-			buttonSave.click();
+				try { 
+					
+					wait.until(ExpectedConditions.textToBePresentInElement( body.errorPresent(), dia));
+						error = body.errorPresent();
 			
-			Thread.sleep(1000);
-			
-			try {  error = body.errorPresent();
-			
-			}
-			catch(Exception e){
+					}
+				catch(Exception e){
 				
-				System.out.println("No se ecuentra el error");
-			}
-			
+					System.out.println("No se ecuentra el error");
+					}
 			
 			Assert.assertTrue(error.getText().contains(dia));		
-			inputDayHours(dia).clear();
-			inputDayHours(dia).sendKeys("8");
+			wsrBody.inputDayHours(dia).clear();
+			wsrBody.inputDayHours(dia).sendKeys("8");
 		}
-		
 		
 		
 		/// ASSERT 3 //
@@ -267,8 +240,7 @@ public class CreateWSRBodyRecord extends base {
 		storiesCompleted ="2";
 		storiesInProgress ="1";
 		storiesNotStarted ="0";
-		
-		Thread.sleep(2000);
+
 		wsrBody.inputStoriesAssigned().clear();
 		wsrBody.inputStoriesAssigned().sendKeys(storiesAssigned);
 		
@@ -281,18 +253,18 @@ public class CreateWSRBodyRecord extends base {
 		wsrBody.inputStoriesNotStarted().clear();
 		wsrBody.inputStoriesNotStarted().sendKeys(storiesNotStarted);
 		
-		buttonSave.click();
-		Thread.sleep(2000);
+		body.saveButton().click();
 		
-		try { error2 = body.errorPresent();
+			try { 
+				wait.until(ExpectedConditions.textToBePresentInElement(body.errorPresent(), errorExpectedStoriesAssigned));
+				error2 = body.errorPresent();
 		
-		}
-		catch(Exception e){
+				}
+			catch(Exception e){
 			
-			System.out.println("No se ecuentra el error");
-		}
+				  System.out.println("No se ecuentra el error");
+				}
 		
-
 		Assert.assertEquals(error2.getText(), errorExpectedStoriesAssigned);
 		Assert.assertEquals(bodyRecordUrl, driver.getCurrentUrl() );
 		
@@ -309,73 +281,96 @@ public class CreateWSRBodyRecord extends base {
 		
 		c.Calendario("15", "March","2021" ,wsrBody.inputSprintEnd(), driver); //End Date
 		
-		buttonSave.click();
+		body.saveButton().click();
 		
-		Thread.sleep(2000);
 		
-		try { errordate= body.errorInStartDate();
+		try { 
+			wait.until(ExpectedConditions.textToBePresentInElement(body.errorInStartDate(), errorExpectedDate));
+
+			errordate= body.errorInStartDate();
 		
 		}
 		catch(Exception e){
 			
 			System.out.println("No se ecuentra el error");
 		}
-		
-		
 
 		
-		System.out.println(errordate.getText());
-		System.out.println(errorExpectedDate);
+		//System.out.println(errordate.getText());
+		//System.out.println(errorExpectedDate);
 		Assert.assertEquals(errordate.getText(), errorExpectedDate);
 		
-		c.Calendario(startDateDay,startDateMonth,startDateYear ,wsrBody.inputSprintEnd(), driver); //End Date
-		
-		buttonSave.click();
 		Thread.sleep(2000);
+		c.Calendario(startDateDay,startDateMonth,startDateYear ,wsrBody.inputSprintEnd(), driver); //End Date
+	
+		body.saveButton().click();
 		
-		String Idnumber = driver.getCurrentUrl();
-		String[] a = Idnumber.split("/");
+
+		wait.until(ExpectedConditions.urlContains("view"));
+		String lastUrl = driver.getCurrentUrl();
+		String[] id = lastUrl.split("/");
+				
+		//System.out.println(id[6]);
 		
-		System.out.println(a[0]);
-		System.out.println(a[1]);
-		System.out.println(a[2]);
-		System.out.println(a[3]);
-		
-		context.setAttribute("urlLastCreatedWsrRecord", );
+		String Id = id[6].toString();
+		context.setAttribute("idnumber", Id);
 		
 		
 		SoftAssert s = new SoftAssert();
 		s.assertEquals(bodyRecordUrl, driver.getCurrentUrl());
 		s.assertAll();
 		
-		System.out.println(driver.getCurrentUrl());
 
 	}
 	
+@Test 
+public void sendToManager(ITestContext context) throws InterruptedException  {
+
+	//Open Header Tab
+	WSRPage wsr= new WSRPage(driver);
+	WSRBodyRecordPage body= new WSRBodyRecordPage(driver);
+	
+	WebDriverWait wait=new WebDriverWait(driver, 20);
+	String idNumber = (String)context.getAttribute("idnumber");
+
+	
+	Utilities.jsClick(wsr.WsrBodyTab());
 	
 	
+	body.lastCreatedRecord(idNumber).click(); //Open last created record changing the Id in url
 	
-	@DataProvider
-	public Object[][] getDataExcelWSRBody( ) throws IOException {
+	wait.until(ExpectedConditions.presenceOfElementLocated(WSRBodyRecordPage.xpathSubmitToManager));
+	body.buttonSubmitToManager().click();  //Submits to Manager
+	
+	wait.until(ExpectedConditions.elementToBeClickable(WSRBodyRecordPage.xpathButtonSaveAndSend)); //Send email
+	body.buttonSaveAndSend().click();
+	
+	
+	//Assert mail is sent successfully
+	
+	String messageExpected = "WSR mailed succesfully!";
+	
+		try { 
+				wait.until(ExpectedConditions.textToBePresentInElement(body.messageMailSucces(), "mailed"));
+				Assert.assertEquals(body.messageMailSucces().getText(), messageExpected);
+			}
+		catch(Exception e)
+			{
+				System.out.println("No se envio el formulario");
+			}
+	
+}
 
-		ExcelData d = new ExcelData();
-		Object[][] dataExcel = d.getData("");
-
-		return dataExcel;
-
-	}
 	
 
 	
 	@AfterTest
 	public void Quit() {
 		
-		//driver.quit();
+		driver.quit();
 
 	}
 	
-	
-
 
 	    
 		

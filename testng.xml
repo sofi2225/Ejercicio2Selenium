@@ -4,8 +4,6 @@
 <listeners> 
 <listener class-name = "Test.Listeners"/>  
 </listeners>
-
-
      
      <test thread-count="5" name="Tests">
     <classes>
@@ -14,11 +12,31 @@
      </test>
      
  	<test thread-count="5" name="Edits">
+   
+    <classes>
+    
+      	<class name="Test.CreateHeader"/>
+      </classes>
+     </test>
+     
+    <test thread-count="5" name="Edit">
+   
+    <classes>
+    
+      	<class name="Test.VerifyInputsBodyRecord"/>
+      </classes>
+     </test>
+     
+          
+    <test thread-count="5" name="Edit">
+   
     <classes>
     
       	<class name="Test.VerifyInputsHeader"/>
       </classes>
      </test>
+   
+   
    
      
 </suite> <!-- Suite -->

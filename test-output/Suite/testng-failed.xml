@@ -8,11 +8,21 @@
     <classes>
       <class name="Test.CreateWSRBodyRecord">
         <methods>
-          <include name="VerifyWSRBodyFields"/>
+          <include name="VerifyWSRBodyFields" invocation-numbers="0"/>
           <include name="initialize"/>
           <include name="Quit"/>
         </methods>
       </class> <!-- Test.CreateWSRBodyRecord -->
     </classes>
   </test> <!-- Tests(failed) -->
+  <test thread-count="5" name="Edits(failed)">
+    <classes>
+      <class name="Test.SendToManager">
+        <methods>
+          <include name="sendToManager" invocation-numbers="0"/>
+          <include name="initialize"/>
+        </methods>
+      </class> <!-- Test.SendToManager -->
+    </classes>
+  </test> <!-- Edits(failed) -->
 </suite> <!-- Failed suite [Suite] -->

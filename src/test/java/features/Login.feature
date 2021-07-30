@@ -1,52 +1,72 @@
 Feature: Ejercicio con Cucumber
 
-Scenario: Click All Tabs
 
-Given Initalize driver in Chrome and login with username "sofi@tdc.com" and password "SSALES1234" 
+Scenario: Verify Inputs Header
 
-When User is on Service Page
+Given User is on Header Tab 
 
-Then Click on all tabs if button new present click and the cancel 
+When User Creates New Header Form
 
-
-
-#@Skip
-Scenario: Create Accounts 
-
-Given Initalize driver in Chrome and login with username "sofi@tdc.com" and password "SSALES1234" 
-
-When User is on Account Page
-
-Then Create "2" complete accounts and "1" account with empty name field 
-And Create account with previous account name 
+Then Assert that titles and field types present in Form matches with expected in "TypeFieldsHeader.xlsx"
 
 
 
+Scenario: Create Header
 
-Scenario: Edit Accounts 
+Given User is on Header Tab 
 
-Given Initalize driver in Chrome and login with username "sofi@tdc.com" and password "SSALES1234" 
+When User Creates New Header Form
 
-When User is on Account Page
+Then Error should be displayed when submitting no data 
 
-Then Modify <Rating>, <Upsell_Opportunity> and <Type> on crated last account 
+And Error should be displayed when submitting with missing data
 
-Examples:
-|Rating					|Upsell_Opportunity	|Type				|
-|Warm						|Yes							  |Prospect		|
-
+And Header created succesfullly when submitting with all fields completed
 
 
 
+Scenario: Verify Inputs Body Record
 
-Scenario: Employee Number
+Given User is in WSR Body Record Tab 
 
-Given Initalize driver in Chrome and login with username "sofi@tdc.com" and password "SSALES1234" 
-And User is on Account Page
+When User Creates  New WSR Body Form 
 
-When User populate employee number with "1431655766"
+Then Assert that titles and field types present in Form matches with expected in excel "WSRBodyRecordTypes.xlsx"
 
-Then Verify error message "Empleados: valor fuera del rango válido en campo numérico: 1431655766"
+
+
+Scenario: Create WSR Body Record
+
+Given User is in WSR Body Record Tab 
+
+When User Creates and fills New WSR Body Form 
+
+Then Error should be displayed when leaving work done field empty
+
+And Error should be displayed when hours >8
+
+And Error should be displayed when hours <8
+
+And Error should be displayed when amount of stories doesn`t match with stories in completed, in progress and not started.
+
+And Error should be displayed when sprint start date = sprint end date
+
+And Error should be displayed when sprint start date > sprint end date
+
+And WSR Body created succesfullly with all fields completed with data form Excel
+
+
+
+
+Scenario: Send to manager
+
+Given User is in WSR Body Record Tab 
+
+And Email Owner is created 
+
+When User click in Submit to manager
+
+Then Record should be sent succesfully
 
 
 
